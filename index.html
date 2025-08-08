@@ -1,10 +1,151 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>mdrn.github</title>
- </head>
-    <body>
-        <h1>Hello world!!</h1>
-        <p>First github site</p>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your GitHub Site</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Banner Styles */
+        .banner {
+            background: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid black;
+            position: relative;
+        }
+
+        /* Banner Toggle Button */
+        .banner-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: black;
+            border: none;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .banner-toggle:hover {
+            opacity: 0.7;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background: white;
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            transition: border 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            border: 1px solid black;
+        }
+
+        /* Main Content */
+        main {
+            padding: 60px 20px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid black;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .placeholder-text {
+            font-style: italic;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="banner">
+            <button class="banner-toggle" id="toggleButton" title="Toggle Banner"></button>
+            <img id="bannerImage" src="https://via.placeholder.com/800x200/f0f0f0/999999?text=Your+Banner+Image" alt="Banner placeholder" style="max-width: 100%; height: auto; border-radius: 4px;">
+        </header>
+
+        <nav>
+            <div class="nav-container">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="projects.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="misc.html">Misc.</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main>
+            <section class="section">
+                <h2>About</h2>
+                <p class="placeholder-text">This section will contain information about you - your background, interests, skills, and what visitors can expect to find on your site.</p>
+            </section>
+
+            <section class="section">
+                <h2>Resume</h2>
+                <p class="placeholder-text">This section will contain your resume or a link to download your resume. You can include your work experience, education, and key accomplishments here.</p>
+            </section>
+        </main>
+    </div>
+</body>
 </html>
