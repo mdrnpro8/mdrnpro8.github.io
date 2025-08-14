@@ -14,7 +14,7 @@
             display: flex;
             align-items: center;
             justify-content: center;  
-            /* insert' */
+            /* insert background img */
             background-image: url('animerain.gif');
             background-size: cover;
             background-position: center;
@@ -27,8 +27,13 @@
             background: rgba(0, 0, 0, 0.6);
             border-radius: 10px;
             padding: 40px;
+            transition: all 0.5s ease;
+            max-width: 500px;
         }
-
+        .container.expanded {
+            max-width: 800px;
+            width: 90%;
+        }
         .main-content {
             display: flex;
             flex-direction: column;
@@ -116,11 +121,79 @@
             font-family: 'Courier New', monospace;
             font-size: 14px;
             border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
 
         .nav-button:hover {
             background: rgba(70, 70, 70, 0.9);
         }
+        /* About Section  */
+        .about-section {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            margin-top: 0;
+        }
+
+        .about-section.active {
+            opacity: 1;
+            max-height: 1000px;
+            margin-top: 30px;
+        }
+
+        .about-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 0 0 20px 0;
+            text-align: center;
+            border-bottom: 2px solid #666;
+            padding-bottom: 15px;
+        }
+
+        .about-content {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 25px;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .about-text {
+            font-size: 16px;
+            color: #cccccc;
+            margin: 0 0 15px 0;
+        }
+
+        .back-button {
+            background: rgba(100, 50, 50, 0.8);
+            margin-bottom: 20px;
+        }
+
+        .back-button:hover {
+            background: rgba(120, 60, 60, 0.9);
+        }
+
+        /* Hides profile when about active */
+        .profile-section.hidden {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            margin: 0;
+            transition: all 0.5s ease;
+        }
+
+        .nav-buttons.hidden {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            margin: 0;
+            transition: all 0.5s ease;
+        }
+
 
         /* Mobile responsive */
         @media (max-width: 600px) {
@@ -140,6 +213,15 @@
             .nav-buttons {
                 flex-direction: column;
                 align-items: center;
+                
+            }
+            .container.expanded {
+                width: 95%;
+                padding: 20px;
+            }
+
+            .about-content {
+                padding: 15px;
             }
         }
     </style>
@@ -162,12 +244,64 @@
                 </div>
             </div>
 
-            <nav class="nav-buttons">
-                <a href="#" class="nav-button">about</a>
+           <nav class="nav-buttons" id="navButtons">
+                <button class="nav-button" onclick="showAbout()">about</button>
                 <a href="#" class="nav-button">projects</a>
-                <a href="#" class="nav-button">happi</a>
+                <a href="#" class="nav-button">happiness</a>
             </nav>
+
+            <div class="about-section" id="aboutSection">
+                <button class="nav-button back-button" onclick="showHome()">return</button>
+                <h2 class="about-title">about</h2>
+                <div class="about-content">
+                    <p class="about-text">
+                        Hello there.
+                    </p>
+                    <p class="about-text">
+                        i like biotech
+                    </p>
+                    <p class="about-text">
+                        feel free to reach out
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script>
+        function showAbout() {
+            const container = document.getElementById('mainContainer');
+            const profileSection = document.getElementById('profileSection');
+            const navButtons = document.getElementById('navButtons');
+            const aboutSection = document.getElementById('aboutSection');
+            
+            // Expand container and hide profile content
+            container.classList.add('expanded');
+            profileSection.classList.add('hidden');
+            navButtons.classList.add('hidden');
+            
+            // Show about section after a short delay
+            setTimeout(() => {
+                aboutSection.classList.add('active');
+            }, 300);
+        }
+        
+        function showHome() {
+            const container = document.getElementById('mainContainer');
+            const profileSection = document.getElementById('profileSection');
+            const navButtons = document.getElementById('navButtons');
+            const aboutSection = document.getElementById('aboutSection');
+            
+            // Hide about section
+            aboutSection.classList.remove('active');
+            
+            // After about section hides, show profile content and shrink container
+            setTimeout(() => {
+                container.classList.remove('expanded');
+                profileSection.classList.remove('hidden');
+                navButtons.classList.remove('hidden');
+            }, 300);
+        }
+    </script>
 </body>
 </html>
