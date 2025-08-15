@@ -218,6 +218,15 @@
             border-radius: 5px;
             padding: 15px;
             margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .project-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid #777;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .project-title {
@@ -238,6 +247,98 @@
             color: #888;
             font-style: italic;
         }
+
+        /* Project Detail Full Page */
+        .project-detail-section {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            margin-top: 0;
+        }
+
+        .project-detail-section.active {
+            opacity: 1;
+            max-height: 1000px;
+            margin-top: 30px;
+        }
+
+        .project-detail-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 0 0 20px 0;
+            text-align: center;
+            border-bottom: 2px solid #666;
+            padding-bottom: 15px;
+        }
+
+        .project-detail-content {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 30px;
+            text-align: left;
+            line-height: 1.6;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .project-detail-content h4 {
+            color: #ffffff;
+            font-size: 18px;
+            margin: 20px 0 10px 0;
+            border-bottom: 1px solid #555;
+            padding-bottom: 5px;
+        }
+
+        .project-detail-content h4:first-child {
+            margin-top: 0;
+        }
+
+        .project-detail-content p {
+            margin: 0 0 15px 0;
+            color: #cccccc;
+        }
+
+        .project-detail-content ul {
+            margin: 0 0 15px 0;
+            padding-left: 20px;
+            color: #cccccc;
+        }
+
+        .project-detail-content li {
+            margin-bottom: 8px;
+        }
+
+        .project-meta {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .project-meta-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .project-meta-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-meta-label {
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .project-meta-value {
+            color: #cccccc;
+        }
+
         /* Hides profile when about active */
         .profile-section.hidden {
             opacity: 0;
@@ -289,9 +390,6 @@
 </head>
 <body>
     <div class="container" id="mainContainer">
-        
-       
-
         <div class="main-content">
             <div class="profile-section" id="profileSection">
                 <div class="profile-avatar"></div>
@@ -325,21 +423,139 @@
                 <button class="nav-button back-button" onclick="showHome()">return</button>
                 <h2 class="projects-title">projects</h2>
                 <div class="projects-content">
-                    <div class="project-item">
+                    <div class="project-item" onclick="showProjectDetail('project1')">
                         <h3 class="project-title">Project One</h3>
                          <p class="project-description">sally walked on the beach by the seashells</p>
                         <p class="project-tech">Tech: idkkkkkkkkkkkkkkkkkkkk ALL OF IT</p>
                     </div>
-                    <div class="project-item">
+                    <div class="project-item" onclick="showProjectDetail('project2')">
                         <h3 class="project-title">Project Two</h3>
                            <p class="project-description">sally walked on the beach by the seashells</p>
                         <p class="project-tech">Tech: idkkkkkkkkkkkkkkkkkkkk ALL OF IT</p>
                     </div>
-                    <div class="project-item">
+                    <div class="project-item" onclick="showProjectDetail('project3')">
                         <h3 class="project-title">Personal Website</h3>
                             <p class="project-description">sally walked on the beach by the seashells</p>
                         <p class="project-tech">Tech: idkkkkkkkkkkkkkkkkkkkk ALL OF IT</p>
                     </div>
+                </div>
+            </div>
+
+            <!-- Individual Project Detail Sections -->
+            <div class="project-detail-section" id="project1Detail">
+                <button class="nav-button back-button" onclick="showProjects()">return to projects</button>
+                <h2 class="project-detail-title">Project One</h2>
+                <div class="project-meta">
+                    <div class="project-meta-item">
+                        <span class="project-meta-label">Status:</span>
+                        <span class="project-meta-value">In Development</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <span class="project-meta-label">Tech:</span>
+                        <span class="project-meta-value">N/A</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <span class="project-meta-label">Timeline:</span>
+                        <span class="project-meta-value">N/A</span>
+                    </div>
+                </div>
+                <div class="project-detail-content">
+                    <h4>Project Overview</h4>
+                    <p>filling this space up with characters to see what the entire page will look like</p>
+                    
+                    <h4>Problem Statement</h4>
+                    <p>blah blah blah blah blah blah blah</p>
+                    
+                    <h4>Key Features</h4>
+                    <ul>
+                        <li>something</li>
+                        <li>something</li>
+                
+                    </ul>
+                    
+                    <h4>Technical Implementation</h4>
+                    <p>i dont know yet but it will likely be something cool as i tend to do cool stuff yah</p>
+                    
+                    <h4>Current Status & Next Steps</h4>
+                    <p>make a billion kachillion trillion dollars every hour</p>
+                </div>
+            </div>
+
+            <div class="project-detail-section" id="project2Detail">
+                <button class="nav-button back-button" onclick="showProjects()">return to projects</button>
+                <h2 class="project-detail-title">Project Two</h2>
+                <div class="project-meta">
+                    <div class="project-meta-item">
+                        <span class="project-meta-label">Status:</span>
+                        <span class="project-meta-value">In Development</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <span class="project-meta-label">Tech:</span>
+                        <span class="project-meta-value">N/A</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <span class="project-meta-label">Timeline:</span>
+                        <span class="project-meta-value">N/A</span>
+                    </div>
+                </div>
+                <div class="project-detail-content">
+                    <h4>Project Overview</h4>
+                    <p>filling this space up with characters to see what the entire page will look like</p>
+                    
+                    <h4>Problem Statement</h4>
+                    <p>blah blah blah blah blah blah blah</p>
+                    
+                    <h4>Key Features</h4>
+                    <ul>
+                        <li>something</li>
+                        <li>something</li>
+                
+                    </ul>
+                    
+                    <h4>Technical Implementation</h4>
+                    <p>i dont know yet but it will likely be something cool as i tend to do cool stuff yah</p>
+                    
+                    <h4>Current Status & Next Steps</h4>
+                    <p>make a billion kachillion trillion dollars every hour</p>
+                </div>
+            </div>
+
+            <div class="project-detail-section" id="project3Detail">
+                <button class="nav-button back-button" onclick="showProjects()">return to projects</button>
+                <h2 class="project-detail-title">Personal Website</h2>
+                <div class="project-meta">
+                    <div class="project-meta-item">
+                        <span class="project-meta-label">Status:</span>
+                        <span class="project-meta-value">In Development</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <span class="project-meta-label">Tech:</span>
+                        <span class="project-meta-value">N/A</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <span class="project-meta-label">Timeline:</span>
+                        <span class="project-meta-value">N/A</span>
+                    </div>
+                </div>
+                <div class="project-detail-content">
+                    <h4>Project Overview</h4>
+                    <p>filling this space up with characters to see what the entire page will look like</p>
+                    
+                    <h4>Problem Statement</h4>
+                    <p>blah blah blah blah blah blah blah</p>
+                    
+                    <h4>Key Features</h4>
+                    <ul>
+                        <li>something</li>
+                        <li>something</li>
+                
+                    </ul>
+                    
+                    <h4>Technical Implementation</h4>
+                    <p>i dont know yet but it will likely be something cool as i tend to do cool stuff yah</p>
+                    
+                    <h4>Current Status & Next Steps</h4>
+                    <p>make a billion kachillion trillion dollars every hour</p>
                 </div>
             </div>
         </div>
@@ -352,8 +568,10 @@
             const navButtons = document.getElementById('navButtons');
             const aboutSection = document.getElementById('aboutSection');
             const projectsSection = document.getElementById('projectsSection');
-            // Hide projects section if it's active
+            
+            // Hide projects section and all project details
             projectsSection.classList.remove('active');
+            hideAllProjectDetails();
 
             // Expand container and hide profile content
             container.classList.add('expanded');
@@ -366,15 +584,16 @@
             }, 300);
         }
         
-          function showProjects() {
+        function showProjects() {
             const container = document.getElementById('mainContainer');
             const profileSection = document.getElementById('profileSection');
             const navButtons = document.getElementById('navButtons');
             const aboutSection = document.getElementById('aboutSection');
             const projectsSection = document.getElementById('projectsSection');
             
-            // Hide about section if it's active
+            // Hide about section and all project details
             aboutSection.classList.remove('active');
+            hideAllProjectDetails();
             
             // Expand container and hide profile content
             container.classList.add('expanded');
@@ -397,6 +616,7 @@
             // Hide about and project section
             aboutSection.classList.remove('active');
             projectsSection.classList.remove('active');
+            hideAllProjectDetails();
 
             // After about section hides, show profile content and shrink container
             setTimeout(() => {
@@ -404,6 +624,28 @@
                 profileSection.classList.remove('hidden');
                 navButtons.classList.remove('hidden');
             }, 300);
+        }
+
+        function showProjectDetail(projectId) {
+            const projectsSection = document.getElementById('projectsSection');
+            const projectDetailSection = document.getElementById(projectId + 'Detail');
+            
+            // Hide all project details first
+            hideAllProjectDetails();
+            
+            // Hide projects list
+            projectsSection.classList.remove('active');
+            
+            // Show project detail after short delay
+            setTimeout(() => {
+                projectDetailSection.classList.add('active');
+            }, 300);
+        }
+
+        function hideAllProjectDetails() {
+            document.getElementById('project1Detail').classList.remove('active');
+            document.getElementById('project2Detail').classList.remove('active');
+            document.getElementById('project3Detail').classList.remove('active');
         }
     </script>
 </body>
