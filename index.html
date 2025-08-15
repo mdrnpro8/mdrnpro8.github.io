@@ -178,7 +178,66 @@
         .back-button:hover {
             background: rgba(120, 60, 60, 0.9);
         }
+          /* Project page */
+        .projects-section {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            margin-top: 0;
+        }
 
+        .projects-section.active {
+            opacity: 1;
+            max-height: 1000px;
+            margin-top: 30px;
+        }
+
+        .projects-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 0 0 20px 0;
+            text-align: center;
+            border-bottom: 2px solid #666;
+            padding-bottom: 15px;
+        }
+
+        .projects-content {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 25px;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .project-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #555;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 0 0 8px 0;
+        }
+
+        .project-description {
+            font-size: 14px;
+            color: #cccccc;
+            margin: 0 0 8px 0;
+        }
+
+        .project-tech {
+            font-size: 12px;
+            color: #888;
+            font-style: italic;
+        }
         /* Hides profile when about active */
         .profile-section.hidden {
             opacity: 0;
@@ -248,7 +307,7 @@
 
            <nav class="nav-buttons" id="navButtons">
                 <button class="nav-button" onclick="showAbout()">about</button>
-                <a href="#" class="nav-button">projects</a>
+                <button class="nav-button" onclick="showProjects()">projects</button>
                 <a href="#" class="nav-button">happiness</a>
             </nav>
 
@@ -259,7 +318,28 @@
                     <p class="about-text">
                         The only real security that a man can have in this world is a reserve of knowledge, experience, and ability
                     </p>
-                   
+                </div>
+            </div>
+
+            <div class="projects-section" id="projectsSection">
+                <button class="nav-button back-button" onclick="showHome()">return</button>
+                <h2 class="projects-title">projects</h2>
+                <div class="projects-content">
+                    <div class="project-item">
+                        <h3 class="project-title">Project One</h3>
+                         <p class="project-description">sally walked on the beach by the seashells</p>
+                        <p class="project-tech">Tech: idkkkkkkkkkkkkkkkkkkkk ALL OF IT</p>
+                    </div>
+                    <div class="project-item">
+                        <h3 class="project-title">Project Two</h3>
+                           <p class="project-description">sally walked on the beach by the seashells</p>
+                        <p class="project-tech">Tech: idkkkkkkkkkkkkkkkkkkkk ALL OF IT</p>
+                    </div>
+                    <div class="project-item">
+                        <h3 class="project-title">Personal Website</h3>
+                            <p class="project-description">sally walked on the beach by the seashells</p>
+                        <p class="project-tech">Tech: idkkkkkkkkkkkkkkkkkkkk ALL OF IT</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -271,7 +351,10 @@
             const profileSection = document.getElementById('profileSection');
             const navButtons = document.getElementById('navButtons');
             const aboutSection = document.getElementById('aboutSection');
-            
+            const projectsSection = document.getElementById('projectsSection');
+            // Hide projects section if it's active
+            projectsSection.classList.remove('active');
+
             // Expand container and hide profile content
             container.classList.add('expanded');
             profileSection.classList.add('hidden');
@@ -283,15 +366,38 @@
             }, 300);
         }
         
+          function showProjects() {
+            const container = document.getElementById('mainContainer');
+            const profileSection = document.getElementById('profileSection');
+            const navButtons = document.getElementById('navButtons');
+            const aboutSection = document.getElementById('aboutSection');
+            const projectsSection = document.getElementById('projectsSection');
+            
+            // Hide about section if it's active
+            aboutSection.classList.remove('active');
+            
+            // Expand container and hide profile content
+            container.classList.add('expanded');
+            profileSection.classList.add('hidden');
+            navButtons.classList.add('hidden');
+            
+            // Show projects section after a short delay
+            setTimeout(() => {
+                projectsSection.classList.add('active');
+            }, 300);
+        }
+        
         function showHome() {
             const container = document.getElementById('mainContainer');
             const profileSection = document.getElementById('profileSection');
             const navButtons = document.getElementById('navButtons');
             const aboutSection = document.getElementById('aboutSection');
-            
-            // Hide about section
+            const projectsSection = document.getElementById('projectsSection');
+
+            // Hide about and project section
             aboutSection.classList.remove('active');
-            
+            projectsSection.classList.remove('active');
+
             // After about section hides, show profile content and shrink container
             setTimeout(() => {
                 container.classList.remove('expanded');
