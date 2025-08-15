@@ -76,6 +76,17 @@
             color: #cccccc;
             margin: 0 0 10px 0;
         }
+        .status-indicator {
+            font-size: 12px;
+            color: #88cc88;
+            margin: 5px 0;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .status-indicator.loading {
+            color: #999;
+        }
 
         .handle-section {
             display: flex;
@@ -409,6 +420,7 @@
                 <div class="profile-info">
                     <h1 class="name">mdrnpro8</h1>
                     <p class="details">Interested in tech x biology :d</p>
+                     <div class="status-indicator" id="statusIndicator">Loading status...</div>
                     <div class="handle-section">
                         <img src="discordlogofix.png" alt="Discord" class="handle-icon">
                         <div class="handle-text">modern_prometheus8</div>
@@ -584,6 +596,48 @@
             </div>
         </div>
     </div>
+
+<script>
+        // Last.fm status checker
+        async function updateStatus() {
+            const statusElement = document.getElementById('statusIndicator');
+            const username = 'mayoo14';
+            const apiKey = 'd4bda4764ff27df4f794888e5fddbb81';
+            const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=1`;
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.recenttracks && data.recenttracks.track) {
+                    const track = Array.isArray(data.recenttracks.track) 
+                        ? data.recenttracks.track[0] 
+                        : data.recenttracks.track;
+                    
+                    if (track['@attr'] && track['@attr'].nowplaying) {
+                        // Currently playing
+                        statusElement.textContent = `🎵 Playing "${track.name}" by ${track.artist['#text']}`;
+                        statusElement.className = 'status-indicator';
+                        statusElement.style.display = 'block';
+                    } else {
+                        // Last played track
+                        statusElement.textContent = `🎶 Last played "${track.name}" by ${track.artist['#text']}`;
+                        statusElement.className = 'status-indicator';
+                        statusElement.style.display = 'block';
+                    }
+                } else {
+                    // No data, hide status
+                    statusElement.style.display = 'none';
+                }
+            } catch (error) {
+                console.log('Status update failed:', error);
+                statusElement.style.display = 'none';
+            }
+        }
+
+        // Update status on page load and every 2 minutes
+        updateStatus();
+        setInterval(updateStatus, 120000)
 
     <script>
         function showAbout() {
