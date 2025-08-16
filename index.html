@@ -700,7 +700,7 @@
             const timeString = now.toLocaleTimeString('en-US', timeOptions);
             const dateString = now.toLocaleDateString('en-US', dateOptions);
             
-            clockElement.innerHTML = `<span class="clock-icon">🕐</span>${timeString} • ${dateString}`;
+            clockElement.innerHTML = `${timeString} • ${dateString}`;
         }
 
         // Update clock immediately and every second
