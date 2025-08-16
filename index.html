@@ -120,12 +120,12 @@
             top: 15px;
             right: 15px;
             font-size: 10px;
-            color: #88cc88;
+            color: #eff7ef;
             font-family: 'Courier New', monospace;
             background: rgba(0, 0, 0, 0.7);
             border-radius: 3px;
             padding: 4px 8px;
-            border: 1px solid rgba(136, 204, 136, 0.3);
+            border: 1px solid rgba(232, 236, 232, 0.664);
             display: flex;
             align-items: center;
             gap: 5px;
@@ -210,6 +210,133 @@
         .back-button:hover {
             background: rgba(120, 60, 60, 0.9);
         }
+
+        /* Contact Section */
+        .contact-section {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            margin-top: 0;
+        }
+
+        .contact-section.active {
+            opacity: 1;
+            max-height: 1000px;
+            margin-top: 30px;
+        }
+
+        .contact-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 0 0 20px 0;
+            text-align: center;
+            border-bottom: 2px solid #666;
+            padding-bottom: 15px;
+        }
+
+        .contact-content {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 25px;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #666;
+            border-radius: 3px;
+            padding: 10px;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #88cc88;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 5px rgba(136, 204, 136, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-button {
+            background: rgba(136, 204, 136, 0.2);
+            border: 1px solid #88cc88;
+            color: #88cc88;
+            padding: 12px 20px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-button:hover {
+            background: rgba(136, 204, 136, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(136, 204, 136, 0.2);
+        }
+
+        .submit-button:active {
+            transform: translateY(0);
+        }
+
+        .submit-button.loading {
+            background: rgba(100, 100, 100, 0.3);
+            border-color: #666;
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        .form-success {
+            text-align: center;
+            padding: 30px;
+            color: #88cc88;
+        }
+
+        .success-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #88cc88;
+        }
+
+        .form-success p {
+            font-size: 16px;
+            margin: 0;
+        }
+
+
           /* Project page */
         .projects-section {
             opacity: 0;
@@ -445,7 +572,7 @@
 </head>
 <body>
     <div class="container" id="mainContainer">
-        <div class="live-clock" id="liveClock"></div>
+       
         <div class="main-content">
             <div class="profile-section" id="profileSection">
                 <div class="profile-avatar"></div>
@@ -465,6 +592,7 @@
            <nav class="nav-buttons" id="navButtons">
                 <button class="nav-button" onclick="showAbout()">about</button>
                 <button class="nav-button" onclick="showProjects()">projects</button>
+                <button class="nav-button" onclick="showContact()">contact</button>
                 <a href="#" class="nav-button">happiness</a>
             </nav>
 
@@ -510,6 +638,40 @@
                     </div>
                 </div>
             </div>
+
+        <div class="contact-section" id="contactSection">
+                <button class="nav-button back-button" onclick="showHome()">return</button>
+                <h2 class="contact-title">contact</h2>
+                <div class="contact-content">
+                    <form class="contact-form" onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button" id="submitBtn">
+                            <span class="submit-text">Send Message</span>
+                            <span class="submit-loading" style="display: none;">Sending...</span>
+                        </button>
+                    </form>
+                    <div class="form-success" id="formSuccess" style="display: none;">
+                        <div class="success-icon">✓</div>
+                        <p>Message sent successfully! I'll get back to you soon.</p>
+                    </div>
+                </div>
+            </div>
+
 
             <!-- Individual Project Detail Sections -->
             <div class="project-detail-section" id="project1Detail">
@@ -700,7 +862,7 @@
             const timeString = now.toLocaleTimeString('en-US', timeOptions);
             const dateString = now.toLocaleDateString('en-US', dateOptions);
             
-            clockElement.innerHTML = `${timeString} • ${dateString}`;
+            clockElement.(willfixwhenIneed)innerHTML = `${timeString} • ${dateString}`;
         }
 
         // Update clock immediately and every second
@@ -717,9 +879,11 @@
             const navButtons = document.getElementById('navButtons');
             const aboutSection = document.getElementById('aboutSection');
             const projectsSection = document.getElementById('projectsSection');
+            const contactSection = document.getElementById('contactSection');
             
             // Hide projects section and all project details
             projectsSection.classList.remove('active');
+            contactSection.classList.remove('active');
             hideAllProjectDetails();
 
             // Expand container and hide profile content
@@ -739,9 +903,11 @@
             const navButtons = document.getElementById('navButtons');
             const aboutSection = document.getElementById('aboutSection');
             const projectsSection = document.getElementById('projectsSection');
+            const contactSection = document.getElementById('contactSection');
             
             // Hide about section and all project details
             aboutSection.classList.remove('active');
+            contactSection.classList.remove('active');
             hideAllProjectDetails();
             
             // Expand container and hide profile content
@@ -754,6 +920,66 @@
                 projectsSection.classList.add('active');
             }, 300);
         }
+
+        function showContact() {
+            const container = document.getElementById('mainContainer');
+            const profileSection = document.getElementById('profileSection');
+            const navButtons = document.getElementById('navButtons');
+            const aboutSection = document.getElementById('aboutSection');
+            const projectsSection = document.getElementById('projectsSection');
+            const contactSection = document.getElementById('contactSection');
+            
+            // Hide other sections and all project details
+            aboutSection.classList.remove('active');
+            projectsSection.classList.remove('active');
+            hideAllProjectDetails();
+            
+            // Expand container and hide profile content
+            container.classList.add('expanded');
+            profileSection.classList.add('hidden');
+            navButtons.classList.add('hidden');
+            
+            // Show contact section after a short delay
+            setTimeout(() => {
+                contactSection.classList.add('active');
+            }, 300);
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = submitBtn.querySelector('.submit-text');
+            const submitLoading = submitBtn.querySelector('.submit-loading');
+            const form = event.target;
+            const successDiv = document.getElementById('formSuccess');
+            
+            // Show loading state
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            submitText.style.display = 'none';
+            submitLoading.style.display = 'inline';
+            
+            // Simulate form submission (replace with actual submission logic)
+            setTimeout(() => {
+                // Hide form and show success message
+                form.style.display = 'none';
+                successDiv.style.display = 'block';
+                
+                // Reset form after 3 seconds
+                setTimeout(() => {
+                    form.style.display = 'block';
+                    successDiv.style.display = 'none';
+                    form.reset();
+                    
+                    // Reset button state
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                    submitText.style.display = 'inline';
+                    submitLoading.style.display = 'none';
+                }, 3000);
+            }, 2000);
+        }
         
         function showHome() {
             const container = document.getElementById('mainContainer');
@@ -761,10 +987,12 @@
             const navButtons = document.getElementById('navButtons');
             const aboutSection = document.getElementById('aboutSection');
             const projectsSection = document.getElementById('projectsSection');
+            const contactSection = document.getElementById('contactSection');
 
             // Hide about and project section
             aboutSection.classList.remove('active');
             projectsSection.classList.remove('active');
+            contactSection.classList.remove('active');
             hideAllProjectDetails();
 
             // After about section hides, show profile content and shrink container
