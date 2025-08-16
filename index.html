@@ -29,7 +29,7 @@
             padding: 40px;
             transition: all 0.5s ease;
             max-width: 500px;
-            
+            position: relative;
         }
         .container.expanded {
             max-width: 800px;
@@ -115,7 +115,27 @@
             text-align: center;
             margin-bottom: 20px;
         }
+            .live-clock {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 10px;
+            color: #88cc88;
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 3px;
+            padding: 4px 8px;
+            border: 1px solid rgba(136, 204, 136, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            opacity: 0.8;
+            z-index: 10;
+        }
 
+        .clock-icon {
+            font-size: 9px;
+        }
 
         .nav-buttons {
             display: flex;
@@ -398,6 +418,13 @@
                 
             }
 
+            .live-clock {
+                position: static;
+                margin: 10px auto 0 auto;
+                opacity: 1;
+                font-size: 11px;
+            }
+
             .nav-buttons {
                 flex-direction: column;
                 align-items: center;
@@ -416,13 +443,16 @@
 </head>
 <body>
     <div class="container" id="mainContainer">
+        <div class="live-clock" id="liveClock"></div>
         <div class="main-content">
             <div class="profile-section" id="profileSection">
                 <div class="profile-avatar"></div>
                 <div class="profile-info">
                     <h1 class="name">mdrnpro8</h1>
                     <p class="details">Interested in tech x biology :d</p>
+                       
                      <div class="status-indicator" id="statusIndicator">Loading status...</div>
+                    
                     <div class="handle-section">
                         <img src="discordlogofix.png" alt="Discord" class="handle-icon">
                         <div class="handle-text">modern_prometheus8</div>
@@ -572,7 +602,7 @@
                     </div>
                     <div class="project-meta-item">
                         <span class="project-meta-label">Timeline:</span>
-                        <span class="project-meta-value">N/A</span>
+                        <span class="project-value">N/A</span>
                     </div>
                 </div>
                 <div class="project-detail-content">
@@ -641,6 +671,42 @@
         updateStatus();
         setInterval(updateStatus, 120000)
 </script>
+
+<script>
+  // Live clock function
+        function updateClock() {
+            const clockElement = document.getElementById('liveClock');
+            const now = new Date();
+            
+            // Format time with seconds
+            const timeOptions = {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false,
+                timeZone: 'America/New_York' // timezone
+            };
+            
+            // Format date
+            const dateOptions = {
+                weekday: 'short',
+                month: 'short', 
+                day: 'numeric',
+                timeZone: 'America/New_York'
+            };
+            
+            const timeString = now.toLocaleTimeString('en-US', timeOptions);
+            const dateString = now.toLocaleDateString('en-US', dateOptions);
+            
+            clockElement.innerHTML = `<span class="clock-icon">🕐</span>${timeString} • ${dateString}`;
+        }
+
+        // Update clock immediately and every second
+        updateClock();
+        setInterval(updateClock, 1000);
+</script>
+
+
 
     <script>
         function showAbout() {
