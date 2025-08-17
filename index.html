@@ -55,7 +55,7 @@
             border-radius: 50%;
             border: 2px solid #fff;
             /* insert'*/
-            background-image: url('questioncat.jpg');
+            background-image: url('narcissus.png');
             background-size: cover;
             background-position: center;
             flex-shrink: 0;
@@ -479,7 +479,7 @@
             color: #cccccc;
         }
 
-        /* Happiness Gallery Section - REVAMPED */
+        /*  Happiness Gallery Section */
         .happiness-section {
             opacity: 0;
             max-height: 0;
@@ -490,7 +490,7 @@
 
         .happiness-section.active {
             opacity: 1;
-            max-height: 2000px;
+            max-height: 2500px;
             margin-top: 30px;
         }
 
@@ -509,8 +509,72 @@
             border: 1px solid #444;
             border-radius: 5px;
             padding: 25px;
-            max-height: 600px;
+            max-height: 700px;
             overflow-y: auto;
+        }
+
+        /* Horizontal Tab Navigation for Gallery */
+        .gallery-nav {
+            display: flex;
+            justify-content: flex-start;
+            gap: 2px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #555;
+            padding-bottom: 0;
+        }
+
+        .gallery-nav-button {
+            padding: 6px 10px;
+            background: rgba(60, 60, 60, 0.7);
+            border: 1px solid #666;
+            border-bottom: none;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            margin-bottom: -1px;
+        }
+
+        .gallery-nav-button:hover {
+            background: rgba(90, 90, 90, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-nav-button.active {
+            background: rgba(136, 204, 136, 0.3);
+            border-color: #88cc88;
+            border-bottom: 1px solid rgba(136, 204, 136, 0.3);
+            color: #88cc88;
+            transform: translateY(-1px);
+            z-index: 1;
+        }
+
+        .gallery-nav-button.active:hover {
+            background: rgba(136, 204, 136, 0.4);
+        }
+
+        /* Gallery content area */
+        .gallery-main-content {
+            width: 100%;
+        }
+
+        /* Gallery Section Content */
+        .gallery-section-content {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .gallery-section-content.active {
+            opacity: 1;
+            max-height: 2000px;
         }
 
         .gallery-grid {
@@ -585,6 +649,73 @@
             font-weight: bold;
         }
 
+        /* Text-based content styles */
+        .text-content {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #555;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .text-content h4 {
+            color: #ffffff;
+            font-size: 16px;
+            margin: 0 0 10px 0;
+            border-bottom: 1px solid #555;
+            padding-bottom: 8px;
+        }
+
+        .text-content p {
+            color: #cccccc;
+            font-size: 14px;
+            margin: 0 0 10px 0;
+        }
+
+        .text-content ul {
+            color: #cccccc;
+            font-size: 14px;
+            margin: 0 0 10px 20px;
+        }
+
+        .text-content li {
+            margin-bottom: 5px;
+        }
+
+        /* Spotify embed styling */
+        .spotify-embed {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #555;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .spotify-embed h4 {
+            color: #ffffff;
+            font-size: 16px;
+            margin: 0 0 15px 0;
+            border-bottom: 1px solid #555;
+            padding-bottom: 8px;
+        }
+
+        .spotify-embed iframe {
+            border-radius: 12px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .empty-gallery {
+            text-align: center;
+            color: #999;
+            font-style: italic;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed #555;
+            border-radius: 8px;
+        }
+
         /* Hides profile when sections active */
         .profile-section.hidden {
             opacity: 0;
@@ -635,6 +766,25 @@
                 grid-template-columns: 1fr;
                 gap: 15px;
             }
+
+            .gallery-nav {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1px;
+            }
+
+            .gallery-nav-button {
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+
+            .gallery-main-content {
+                margin-top: 0px;
+            }
+
+            .happiness-content {
+                gap: 15px;
+            }
         }
     </style>
 </head>
@@ -645,7 +795,7 @@
                 <div class="profile-avatar"></div>
                 <div class="profile-info">
                     <h1 class="name">mdrnpro8</h1>
-                    <p class="details">Interested in tech x biology :d</p>
+                    <p class="details">Interested in tech x biology</p>
                     <div class="status-indicator" id="statusIndicator">Loading status...</div>
                     <div class="handle-section">
                         <img src="discordlogofix.png" alt="Discord" class="handle-icon">
@@ -737,14 +887,77 @@
                 </div>
             </div>
 
-            <!-- Happiness Gallery Section - AUTO-FETCH VERSION -->
+            <!--  Happiness  Section -->
             <div class="happiness-section" id="happinessSection">
                 <button class="nav-button back-button" onclick="showHome()">return</button>
-                <h2 class="happiness-title">happiness gallery</h2>
+                <h2 class="happiness-title">happiness</h2>
                 <div class="happiness-content">
-                    <div class="gallery-grid" id="galleryGrid">
-                        <!-- Gallery items will be automatically generated -->
-                        <div class="empty-gallery" id="loadingMessage">Loading gallery content...</div>
+                    <div class="gallery-nav">
+  <button class="gallery-nav-button active" data-section="videos"  onclick="showGallerySection('videos', event)">media</button>
+  <button class="gallery-nav-button"          data-section="music"   onclick="showGallerySection('music', event)">music</button>
+  <button class="gallery-nav-button"          data-section="books"   onclick="showGallerySection('books', event)">books</button>
+  <button class="gallery-nav-button"          data-section="thoughts" onclick="showGallerySection('thoughts', event)">thoughts</button>
+</div>
+
+                    <div class="gallery-main-content">
+                        <!-- Videos Section -->
+                        <div class="gallery-section-content active" id="videosSection">
+                            <div class="gallery-grid" id="videosGrid">
+                                <div class="empty-gallery" id="videosLoadingMessage">Loading content</div>
+                            </div>
+                        </div>
+
+                        <!-- Music Section -->
+                        <div class="gallery-section-content" id="musicSection">
+                            <div class="spotify-embed">
+                                <h4>Featured Playlist</h4>
+                                <iframe data-testid="embed-iframe" src="https://open.spotify.com/embed/playlist/1l3OrZYePRNAlyl24B2iEF?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                            </div>
+
+                        </div>
+
+                        <!-- Books Section -->
+                        <div class="gallery-section-content" id="booksSection">
+                            <div class="text-content">
+                                <h4>Currently Reading</h4>
+                                <p><strong>"Title"</strong> by  Name</p>
+                                <p>...</p>
+                            </div>
+                            <div class="text-content">
+                                <h4>Recent Favorites</h4>
+                                <ul>
+                                    <li><strong>"Book"</strong> by </li>
+                                    <li><strong>"Book"</strong> by </li>
+                                    <li><strong>"Book"</strong> by </li>
+                                </ul>
+                            </div>
+                            <div class="text-content">
+                                <h4>Want to Read</h4>
+                                <p>...</p>
+                            </div>
+                        </div>
+
+                        <!-- Thoughts Section -->
+                        <div class="gallery-section-content" id="thoughtsSection">
+                            <div class="text-content">
+                                <h4>Random Musings</h4>
+                                <p>...</p>
+                            </div>
+                            <div class="text-content">
+                                <h4>mmmm</h4>
+                                <p>...</p>
+                                <p>.....</p>
+                            </div>
+                            <div class="text-content">
+                                <h4>mmmmmmm</h4>
+                                <p>...</p>
+                                <ul>
+                                    <li>mmmm</li>
+                                     <li>mmmm</li>
+                                     <li>mmmm</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -867,8 +1080,8 @@
     </div>
 
     <script>
-        // Gallery content config - add URLS
-        const galleryContent = [
+        // Gallery content config - add URLS for videos section only
+        const videosContent = [
             // YouTube Videos - add URL and title/description will be auto-fetched
             {
                 type: 'youtube',
@@ -890,13 +1103,13 @@
                 description: 'N/A'
             },
             {
-                  type: 'image',
+                type: 'image',
                 url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
                 title: 'Insert',
                 description: 'N/A'
             },
             {
-                  type: 'image',
+                type: 'image',
                 url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
                 title: 'Insert',
                 description: 'N/A'
@@ -931,18 +1144,18 @@
             }
         }
 
-        // Gallery generation function
-        async function generateGallery() {
-            const grid = document.getElementById('galleryGrid');
-            const loadingMessage = document.getElementById('loadingMessage');
+        // Gallery generation function - now only for videos
+        async function generateVideosGallery() {
+            const grid = document.getElementById('videosGrid');
+            const loadingMessage = document.getElementById('videosLoadingMessage');
             
             if (loadingMessage) {
-                loadingMessage.textContent = 'Loading gallery content...';
+                loadingMessage.textContent = 'Loading video content...';
             }
 
             const galleryItems = [];
 
-            for (const item of galleryContent) {
+            for (const item of videosContent) {
                 if (item.type === 'youtube') {
                     const videoId = extractVideoId(item.url);
                     if (videoId) {
@@ -972,7 +1185,7 @@
 
             // Render gallery
             if (galleryItems.length === 0) {
-                grid.innerHTML = '<div class="empty-gallery">No gallery items found 🌟</div>';
+                grid.innerHTML = '<div class="empty-gallery">No video items found</div>';
                 return;
             }
 
@@ -1003,6 +1216,33 @@
                 }
             }).join('');
         }
+
+        // Gallery navigation function
+        function showGallerySection(sectionName, ev) {
+  // Toggle active state on tabs
+  const navButtons = document.querySelectorAll('.gallery-nav-button');
+  navButtons.forEach(btn => btn.classList.remove('active'));
+
+  if (ev && ev.currentTarget) {
+    ev.currentTarget.classList.add('active');
+  } else {
+    // Programmatic call (no event): activate the matching button
+    const btn = document.querySelector(`.gallery-nav-button[data-section="${sectionName}"]`);
+    if (btn) btn.classList.add('active');
+  }
+
+  // Show the right section
+  const sections = document.querySelectorAll('.gallery-section-content');
+  sections.forEach(section => section.classList.remove('active'));
+
+  const targetSection = document.getElementById(sectionName + 'Section');
+  if (targetSection) {
+    targetSection.classList.add('active');
+    if (sectionName === 'videos') {
+      generateVideosGallery();
+    }
+  }
+}
 
         // Last.fm status checker
         async function updateStatus() {
@@ -1038,7 +1278,7 @@
             }
         }
 
-        // Gallery functions - simplified for static content
+        // Media functions
         function openVideo(url) {
             window.open(url, '_blank');
         }
@@ -1137,7 +1377,8 @@
             
             setTimeout(() => {
                 happinessSection.classList.add('active');
-                generateGallery(); // Auto-generate gallery when section is shown
+                // Default to videos section and generate content
+                showGallerySection('videos');
             }, 300);
         }
         
